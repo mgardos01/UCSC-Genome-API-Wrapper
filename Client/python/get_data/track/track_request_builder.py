@@ -1,0 +1,102 @@
+from __future__ import annotations
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.get_path_parameters import get_path_parameters
+from kiota_abstractions.method import Method
+from kiota_abstractions.request_adapter import RequestAdapter
+from kiota_abstractions.request_information import RequestInformation
+from kiota_abstractions.request_option import RequestOption
+from kiota_abstractions.serialization import Parsable, ParsableFactory
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+class TrackRequestBuilder(BaseRequestBuilder):
+    """
+    Builds and executes requests for operations under /getData/track
+    """
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
+        """
+        Instantiates a new TrackRequestBuilder and sets the default values.
+        param path_parameters: The raw url or the url-template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
+        """
+        super().__init__(request_adapter, "{+baseurl}/getData/track?genome={genome}&track={track}{&chrom*,end*,hubUrl*,jsonOutputArrays*,maxItemsOutput*,start*}", path_parameters)
+    
+    async def get(self,request_configuration: Optional[RequestConfiguration] = None) -> bytes:
+        """
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: bytes
+        """
+        request_info = self.to_get_request_information(
+            request_configuration
+        )
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", None)
+    
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration] = None) -> RequestInformation:
+        """
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
+        return request_info
+    
+    def with_url(self,raw_url: Optional[str] = None) -> TrackRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: TrackRequestBuilder
+        """
+        if not raw_url:
+            raise TypeError("raw_url cannot be null.")
+        return TrackRequestBuilder(self.request_adapter, raw_url)
+    
+    @dataclass
+    class TrackRequestBuilderGetQueryParameters():
+        def get_query_parameter(self,original_name: Optional[str] = None) -> str:
+            """
+            Maps the query parameters names to their encoded names for the URI template parsing.
+            param original_name: The original query parameter name in the class.
+            Returns: str
+            """
+            if not original_name:
+                raise TypeError("original_name cannot be null.")
+            if original_name == "hub_url":
+                return "hubUrl"
+            if original_name == "json_output_arrays":
+                return "jsonOutputArrays"
+            if original_name == "max_items_output":
+                return "maxItemsOutput"
+            if original_name == "chrom":
+                return "chrom"
+            if original_name == "end":
+                return "end"
+            if original_name == "genome":
+                return "genome"
+            if original_name == "start":
+                return "start"
+            if original_name == "track":
+                return "track"
+            return original_name
+        
+        chrom: Optional[str] = None
+
+        end: Optional[int] = None
+
+        genome: Optional[str] = None
+
+        hub_url: Optional[str] = None
+
+        json_output_arrays: Optional[bool] = None
+
+        max_items_output: Optional[int] = None
+
+        start: Optional[int] = None
+
+        track: Optional[str] = None
+
+    
+
