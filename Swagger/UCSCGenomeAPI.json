@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api.genome.ucsc.edu/list/publicHubs",
+      "url": "https://api.genome.ucsc.edu/",
       "description": "Primary API Server"
     }
   ],

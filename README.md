@@ -1,1 +1,0 @@
-Local .NET API Proxy + Generated API SDKs for C#, Go, Java, PHP, Python, Ruby, and TypeScript for the UCSC Genome REST API (https://genome.ucsc.edu/goldenPath/help/api.html)

@@ -35,7 +35,7 @@ module ApiSdk
             MicrosoftKiotaAbstractions::ApiClientBuilder.register_default_serializer(MicrosoftKiotaSerializationJson::JsonSerializationWriterFactory)
             MicrosoftKiotaAbstractions::ApiClientBuilder.register_default_deserializer(MicrosoftKiotaSerializationJson::JsonParseNodeFactory)
             if @request_adapter.get_base_url.nil? || @request_adapter.get_base_url.empty?
-                @request_adapter.set_base_url('https://api.genome.ucsc.edu/list/publicHubs')
+                @request_adapter.set_base_url('https://api.genome.ucsc.edu')
             end
             @path_parameters['baseurl'] = @request_adapter.get_base_url
         end

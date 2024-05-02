@@ -50,7 +50,7 @@ class ApiClient extends BaseRequestBuilder
         ApiClientBuilder::registerDefaultDeserializer(JsonParseNodeFactory::class);
         ApiClientBuilder::registerDefaultDeserializer(TextParseNodeFactory::class);
         if (empty($this->requestAdapter->getBaseUrl())) {
-            $this->requestAdapter->setBaseUrl('https://api.genome.ucsc.edu/list/publicHubs');
+            $this->requestAdapter->setBaseUrl('https://api.genome.ucsc.edu');
         }
         $this->pathParameters['baseurl'] = $this->requestAdapter->getBaseUrl();
     }

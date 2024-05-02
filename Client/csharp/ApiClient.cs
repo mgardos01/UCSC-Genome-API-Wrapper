@@ -49,7 +49,7 @@ namespace ApiSdk {
             ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
             if (string.IsNullOrEmpty(RequestAdapter.BaseUrl))
             {
-                RequestAdapter.BaseUrl = "https://api.genome.ucsc.edu/list/publicHubs";
+                RequestAdapter.BaseUrl = "https://api.genome.ucsc.edu";
             }
             PathParameters.TryAdd("baseurl", RequestAdapter.BaseUrl);
         }

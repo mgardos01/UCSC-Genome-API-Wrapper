@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)/../Swagger</OpenApiDocumentsDirectory>
+    <OpenApiGenerateDocuments>true</OpenApiGenerateDocuments>
+    <OpenApiGenerateDocumentsOnBuild>true</OpenApiGenerateDocumentsOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Default the property to false to avoid generating SDKs on every build -->
+    <GenerateSDKs>false</GenerateSDKs>
+  </PropertyGroup>
+
+  <Target Name="Generate SDKs" AfterTargets="Build" Condition="'$(GenerateSDKs)' == 'true'">
+    <!-- C# Client -->
+    <Exec Command="kiota generate --clean-output -l csharp -d $(MSBuildProjectDirectory)/../Swagger/UCSCGenomeAPI.json -o $(MSBuildProjectDirectory)/../Client/csharp"/>
+
+    <!-- Go Client -->
+    <Exec Command="kiota generate --clean-output -l go -d $(MSBuildProjectDirectory)/../Swagger/UCSCGenomeAPI.json -o $(MSBuildProjectDirectory)/../Client/go"/>
+
+    <!-- Java Client -->
+    <Exec Command="kiota generate --clean-output -l java -d $(MSBuildProjectDirectory)/../Swagger/UCSCGenomeAPI.json -o $(MSBuildProjectDirectory)/../Client/java"/>
+
+    <!-- PHP Client -->
+    <Exec Command="kiota generate --clean-output -l php -d $(MSBuildProjectDirectory)/../Swagger/UCSCGenomeAPI.json -o $(MSBuildProjectDirectory)/../Client/php"/>
+
+    <!-- Python Client -->
+    <Exec Command="kiota generate --clean-output -l python -d $(MSBuildProjectDirectory)/../Swagger/UCSCGenomeAPI.json -o $(MSBuildProjectDirectory)/../Client/python"/>
+
+    <!-- Ruby Client -->
+    <Exec Command="kiota generate --clean-output -l ruby -d $(MSBuildProjectDirectory)/../Swagger/UCSCGenomeAPI.json -o $(MSBuildProjectDirectory)/../Client/ruby"/>
+    
+    <!-- TypeScript Client -->
+    <Exec Command="kiota generate --clean-output -l typescript -d $(MSBuildProjectDirectory)/../Swagger/UCSCGenomeAPI.json -o $(MSBuildProjectDirectory)/../Client/typescript"/>
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+</Project>

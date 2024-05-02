@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen(options =>
     // Define the server and the base path for the API
     options.AddServer(new OpenApiServer 
     { 
-        Url = "https://api.genome.ucsc.edu/list/publicHubs",
+        Url = "https://api.genome.ucsc.edu/",
         Description = "Primary API Server"
     });
 });

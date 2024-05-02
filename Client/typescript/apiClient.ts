@@ -48,7 +48,7 @@ export function createApiClient(requestAdapter: RequestAdapter) {
     registerDefaultDeserializer(TextParseNodeFactory);
     registerDefaultDeserializer(FormParseNodeFactory);
     if (requestAdapter.baseUrl === undefined || requestAdapter.baseUrl === "") {
-        requestAdapter.baseUrl = "https://api.genome.ucsc.edu/list/publicHubs";
+        requestAdapter.baseUrl = "https://api.genome.ucsc.edu";
     }
     const pathParameters: Record<string, unknown> = {
         "baseurl": requestAdapter.baseUrl,

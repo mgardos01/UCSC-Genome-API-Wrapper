@@ -61,7 +61,7 @@ public class ApiClient extends BaseRequestBuilder {
         ApiClientBuilder.registerDefaultDeserializer(() -> new FormParseNodeFactory());
         ApiClientBuilder.registerDefaultDeserializer(() -> new TextParseNodeFactory());
         if (requestAdapter.getBaseUrl() == null || requestAdapter.getBaseUrl().isEmpty()) {
-            requestAdapter.setBaseUrl("https://api.genome.ucsc.edu/list/publicHubs");
+            requestAdapter.setBaseUrl("https://api.genome.ucsc.edu");
         }
         pathParameters.put("baseurl", requestAdapter.getBaseUrl());
     }
