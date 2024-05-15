@@ -1,4 +1,5 @@
 # Genome Data API Client SDKs
+DISCLAIMER:BASICALLY A PROOF OF CONCEPT RIGHT NOW
 
 This repository contains the source code for a wrapper around UCSC's Genome Browser REST API. 
 
